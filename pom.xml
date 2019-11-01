@@ -75,6 +75,11 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/algs4.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.1.9.RELEASE</version>
+        </dependency>
     </dependencies>
 
 
