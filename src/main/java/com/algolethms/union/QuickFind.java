@@ -10,7 +10,7 @@ public class QuickFind implements UF {
     /**
      * 触点的标记
      */
-    private int[] id;
+    public int[] id;
     /**
      * 分量数量
      */
@@ -59,5 +59,10 @@ public class QuickFind implements UF {
     @Override
     public int count() {
         return count;
+    }
+
+    @Override
+    public int[] getId() {
+        return id;
     }
 }

@@ -33,4 +33,9 @@ public interface UF {
      * @return
      */
     int count();
+
+    /**
+     * 获取分量数据
+     */
+    int[] getId();
 }

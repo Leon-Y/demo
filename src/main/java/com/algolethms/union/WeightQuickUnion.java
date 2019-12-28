@@ -13,7 +13,7 @@ public class WeightQuickUnion implements UF {
     /**
      * 触点标记
      */
-    private int[] id;
+    public int[] id;
     private int[] sz;
 
     public WeightQuickUnion(int N) {
@@ -46,11 +46,10 @@ public class WeightQuickUnion implements UF {
 
     @Override
     public int find(int p) {
-        int pId = id[p];
-        while (p != pId) {
-            pId = id[pId];
+        while (p != id[p]) {
+            p = id[p];
         }
-        return pId;
+        return p;
     }
 
     @Override
@@ -61,5 +60,10 @@ public class WeightQuickUnion implements UF {
     @Override
     public int count() {
         return count;
+    }
+
+    @Override
+    public int[] getId() {
+        return id;
     }
 }
