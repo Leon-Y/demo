@@ -16,8 +16,8 @@ public class Selection extends Example {
                 if (less(comparables[j], comparables[min])) {
                     min = j;
                 }
-                exch(comparables, i, min);
             }
+            exch(comparables, i, min);
         }
     }
 }

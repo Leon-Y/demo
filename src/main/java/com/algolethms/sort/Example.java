@@ -1,6 +1,7 @@
 package com.algolethms.sort;
 
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import jdk.jfr.events.SocketReadEvent;
 
@@ -38,6 +39,9 @@ public abstract class Example {
         Comparable t = a[i];
         a[i] = a[j];
         a[j] = t;
+
+//        drawSort(a);
+//        StdDraw.clear();
     }
 
     /**
@@ -55,20 +59,94 @@ public abstract class Example {
 
     /**
      * 检查是否排序正确，对于主键完全相同的数组无效
+     *
      * @param a
      * @return
      */
     protected static boolean isSorted(Comparable[] a) {
         for (int i = 1; i < a.length; i++) {
-            if (less(a[i],a[1-1])){
+            if (less(a[i], a[1 - 1])) {
                 return false;
             }
         }
         return true;
     }
 
-    public static void main(String[] args) {
-        String[] strings = In.readStrings();
-        show(strings);
+    /**
+     * 排序动画
+     *
+     * @param a
+     */
+    public static void drawSort(Comparable[] a) {
+        StdDraw.setXscale(-1, a.length + 1);
+
+        Comparable max = a[0];
+        for (int i = 1; i < a.length; i++) {
+            if (less(max, a[i])) {
+                max = a[i];
+            }
+        }
+        StdDraw.setYscale(-2, (Double) max + 1);
+
+        for (int i = 0; i < a.length; i++) {
+            double y = (Double) a[i];
+            StdDraw.filledRectangle(i + 0.5, y / 2.0, 0.3, y / 2.0);
+        }
+//        StdDraw.pause(100);
+    }
+
+    /**
+     * 归并所需的辅助数组
+     */
+    protected static Comparable[] aux;
+
+    /**
+     * 合并数组
+     */
+    public static void merge(Comparable[] comparables, int lo, int mid, int hi) {
+        int i = lo, j = mid + 1;
+        for (int k = lo; k <= hi; k++) {
+            aux[k] = comparables[k];
+        }
+        for (int k = lo; k <= hi; k++) {
+            if (i > mid) {
+                comparables[k] = aux[j++];
+            } else if (j > hi) {
+                comparables[k] = aux[i++];
+            } else if (less(aux[j], aux[i])) {
+                comparables[k] = aux[j++];
+            } else {
+                comparables[k] = aux[i++];
+            }
+        }
+    }
+
+    /**
+     * 快速排序的切分
+     *
+     * @param comparables
+     * @param lo
+     * @param hi
+     * @return
+     */
+    public static int partition(Comparable[] comparables, int lo, int hi) {
+        int i = lo + 1;
+        int j = hi;
+        Comparable loValue = comparables[lo];
+        while (true) {
+            while (i < hi && less(comparables[i], loValue)) {
+                i++;
+            }
+            while (j > lo && !less(comparables[j], loValue)) {
+                j--;
+            }
+            if (i < j) {
+                exch(comparables, i, j);
+            } else {
+                break;
+            }
+        }
+        exch(comparables, lo, j);
+        return j;
     }
 }

@@ -12,14 +12,11 @@ public class Insertion extends Example {
     public void sort(Comparable[] comparables) {
         int N = comparables.length;
         for (int i = 1; i < N; i++) {
-            int min = i;
-            for (int j = i; j > 0; j--) {
-                if (less(comparables[min],comparables[j-1])){
-                    exch(comparables,min,j-1);
-                    min = j-1;
-                }
+            for (int j = i; j > 0&&(less(comparables[j],comparables[j-1])); j--) {
+                    exch(comparables,j,j-1);
             }
         }
     }
+
 
 }
