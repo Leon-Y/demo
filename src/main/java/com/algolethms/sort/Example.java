@@ -5,6 +5,8 @@ import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdOut;
 import jdk.jfr.events.SocketReadEvent;
 
+import java.util.concurrent.ConcurrentMap;
+
 /**
  * @Author: Administrator
  * @Date: 2019/12/31 :10:48
@@ -148,5 +150,44 @@ public abstract class Example {
         }
         exch(comparables, lo, j);
         return j;
+    }
+
+    /**
+     * 堆的上浮(从hi浮至lo)
+     *
+     * @param comparables
+     * @param lo          低位
+     * @param hi          高位
+     */
+    public static void swim(Comparable[] comparables, int lo, int hi) {
+        int k = hi - lo + 1;
+        while (k > 1 && less(lo - 1 + k / 2, hi)) {
+            exch(comparables, lo - 1 + k / 2, hi);
+            k = lo - 1 + k / 2;
+        }
+    }
+
+    /**
+     * 堆的下沉(从lo下沉至hi)
+     *
+     * @param comparables
+     * @param k           下沉的元素位置
+     * @param N           下沉的深度
+     */
+    public static void sink(Comparable[] comparables, int k, int N) {
+        k = k + 1;
+        N = N + 1;
+        int j;
+        while (2 * k <= N) {
+            j = 2 * k;
+            if (j < N && less(comparables[j - 1], comparables[j])) {
+                j++;
+            }
+            if (less(comparables[j - 1], comparables[k - 1])) {
+                break;
+            }
+            exch(comparables, k - 1, j - 1);
+            k = j;
+        }
     }
 }

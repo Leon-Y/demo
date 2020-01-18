@@ -1,17 +1,36 @@
 package com.algolethms.Utils;
 
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
 /**
  * @Author: Administrator
  * @Date: 2019/11/8 :10:21
  * @Description:
  */
-public class Queue<T> {
+public class Queue<T> implements Iterable<T>{
 
     private Node firstNode;
 
     private Node lastNode;
 
     private int count;
+
+    @Override
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    @Override
+    public void forEach(Consumer<? super T> action) {
+
+    }
+
+    @Override
+    public Spliterator<T> spliterator() {
+        return null;
+    }
 
     private class Node{
         T item;

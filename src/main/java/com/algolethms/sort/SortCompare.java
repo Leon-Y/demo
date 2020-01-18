@@ -56,7 +56,8 @@ public class SortCompare {
             quick.sort(a);
         };
         if (alg.equals("Heap")){
-
+            Heap heap = new Heap();
+            heap.sort(a);
         };
         long duration = (System.currentTimeMillis() - start);
         System.out.print(Example.isSorted(a)+" ");
@@ -90,8 +91,10 @@ public class SortCompare {
 //        System.out.println(timeRandomInput(SortCompare.INSERTION, 100, 1)+"ms");
 //        System.out.println(timeRandomInput(SortCompare.SHELL, 100, 1)+"ms");
 //        System.out.println(timeRandomInput(SortCompare.MERGE, 39, 1)+"ms");
-//        System.out.println(timeRandomInput(SortCompare.MERGEBU, 39, 1)+"ms");
-        System.out.println(timeRandomInput(SortCompare.QUICK, 3900000, 1)+"ms");
+        System.out.println(timeRandomInput(SortCompare.MERGEBU, 100000000, 1)+"ms");
+        System.out.println(Integer.MAX_VALUE);
+//        System.out.println(timeRandomInput(SortCompare.QUICK, 3900000, 1)+"ms");
+        System.out.println(timeRandomInput(SortCompare.HEAP, 100000000, 1)+"ms");
 
     }
 }
